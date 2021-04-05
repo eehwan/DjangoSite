@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import Http404
+
 from .models import Question
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    output = "<div>Hello World. You are at the polls index.<div>"
-    for question in latest_question_list:
-        output += f"<a href='./{question.id}'>{question.question_text}</a>"
-    return HttpResponse(output)
+    latest_question_list = Question.objects.order_by('-pub_date')[:20]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):
     return HttpResponse(f"You're looking at question {question_id}. <a href='./results'>Results</a> <a href='./vote'>Vote</a>")
