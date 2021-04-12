@@ -25,4 +25,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls'))
 ]\
-    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # uwsgi에서 static 못 불러오는 것을 해결
+    # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # uwsgi에서 static 못 불러오는 것을 해결
